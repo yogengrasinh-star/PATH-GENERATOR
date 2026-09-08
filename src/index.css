@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+@theme { --color-ink: #0E0E10; --color-panel: #16161A; --color-panel2: #1D1A1A; --color-edge: #3A2924; --color-violet-400: #E47B52; --color-violet-500: #D95D39; --color-violet-600: #B9472A; --color-cyan-400: #E2A15D; --color-cyan-500: #C9793E; --color-lime-400: #D99A54; --color-lime-500: #B87333; --color-amber-400: #E6A15A; --color-rose-400: #C95A45; --color-rose-500: #A83F32; --color-slate-300: #D6C8BE; --color-slate-400: #B3A49A; --color-slate-500: #887A72; --color-slate-600: #665A54; --color-white: #F5F0EB; --font-heading: 'Space Grotesk', sans-serif; --font-body: 'Inter', sans-serif; --shadow-glow: 0 0 40px -8px rgba(217, 93, 57, .38); --shadow-cyan-glow: 0 0 40px -8px rgba(226, 161, 93, .34); }
+:root { font-family: 'Inter', sans-serif; color: #F5F0EB; background: #0E0E10; font-synthesis: none; text-rendering: optimizeLegibility; }
+* { box-sizing: border-box; }
+html { background: #0E0E10; }
+body { margin: 0; min-width: 320px; background: #0E0E10; }
+button { font: inherit; cursor: pointer; }
+button:focus-visible { outline: 2px solid #E47B52; outline-offset: 3px; box-shadow: 0 0 0 4px rgba(217, 93, 57, .2); }
+.font-heading { font-family: 'Space Grotesk', sans-serif; }
+.font-body { font-family: 'Inter', sans-serif; }
+.gradient-text { background: linear-gradient(90deg, #E47B52, #E2A15D); background-clip: text; -webkit-background-clip: text; color: transparent; }
+.ambient-blob { position: absolute; width: 38rem; height: 38rem; border-radius: 46% 54% 62% 38% / 42% 38% 62% 58%; filter: blur(105px); will-change: transform, border-radius; }
+.ambient-shape { position: absolute; width: 32rem; height: 24rem; border-radius: 58% 42% 38% 62% / 48% 56% 44% 52%; filter: blur(90px); opacity: .12; will-change: transform, border-radius; }
+.ambient-shape-one { top: 8%; right: 8%; background: #E47B52; animation: ember-drift-one 28s ease-in-out infinite; }
+.ambient-shape-two { bottom: -4%; left: 18%; background: #E2A15D; animation: ember-drift-two 34s ease-in-out infinite; }
+.ambient-shape-three { top: 42%; left: -12%; width: 24rem; height: 28rem; background: #C95A45; animation: ember-drift-three 31s ease-in-out infinite; }
+.grid-overlay { position: absolute; inset: 0; opacity: .03; background-image: linear-gradient(rgba(255,255,255,.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.8) 1px, transparent 1px); background-size: 48px 48px; }
+.grid-overlay::after { content: ''; position: absolute; inset: 0; opacity: .2; background-image: repeating-radial-gradient(circle at 20% 30%, rgba(255,255,255,.4) 0 1px, transparent 1px 4px); background-size: 7px 7px; mix-blend-mode: soft-light; }
+.ambient-cursor-glow { position: absolute; left: var(--pointer-x, 50%); top: var(--pointer-y, 42%); width: 26rem; height: 26rem; transform: translate(-50%, -50%); border-radius: 9999px; background: radial-gradient(circle, rgba(217,93,57,.12), transparent 68%); filter: blur(32px); transition: left 900ms ease-out, top 900ms ease-out; }
+.hero-orbit { animation: orbit-pulse 8s ease-in-out infinite; }
+.learning-dashboard { position: relative; isolation: isolate; animation: dashboard-breathe 8s ease-in-out infinite; }
+.learning-dashboard::before { content: ''; position: absolute; inset: 12% 16%; z-index: -1; border-radius: 9999px; background: radial-gradient(circle, rgba(217,93,57,.16), transparent 70%); filter: blur(32px); animation: dashboard-glow 8s ease-in-out infinite; }
+.learning-dashboard::after { content: ''; position: absolute; inset: 18px; z-index: -1; pointer-events: none; opacity: .42; background-image: radial-gradient(circle, rgba(226,161,93,.75) 0 1px, transparent 1.5px), radial-gradient(circle, rgba(217,93,57,.6) 0 1px, transparent 1.5px); background-position: 8% 20%, 92% 76%; background-size: 108px 86px, 132px 112px; animation: particle-float 12s ease-in-out infinite alternate; }
+.learning-dashboard .learning-step { position: relative; z-index: 1; transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease, filter .35s ease; }
+.learning-dashboard .learning-step::after { content: ''; position: absolute; width: 5px; height: 5px; left: 50%; bottom: -16px; border-radius: 50%; background: #E47B52; box-shadow: 0 0 12px 3px rgba(228,123,82,.7); opacity: 0; animation: pipeline-particle 12s linear infinite; }
+.learning-dashboard .learning-step:hover { z-index: 2; transform: translateY(-3px) scale(1.02); filter: brightness(1.15); box-shadow: 0 0 24px rgba(217,93,57,.2); }
+.learning-dashboard .learning-step:nth-child(1)::after { animation-delay: 0s; }
+.learning-dashboard .learning-step:nth-child(2)::after { animation-delay: 2s; }
+.learning-dashboard .learning-step:nth-child(3)::after { animation-delay: 4s; }
+.learning-dashboard .learning-step:nth-child(4)::after { animation-delay: 6s; }
+.learning-dashboard .learning-step:nth-child(5)::after { animation-delay: 8s; }
+.learning-dashboard .learning-step:nth-child(6)::after { animation-delay: 10s; }
+.learning-dashboard .learning-step:nth-child(1) { animation: pipeline-active 12s ease-in-out infinite; }
+.learning-dashboard .learning-step:nth-child(2) { animation: pipeline-active 12s ease-in-out 2s infinite; }
+.learning-dashboard .learning-step:nth-child(3) { animation: pipeline-active 12s ease-in-out 4s infinite; }
+.learning-dashboard .learning-step:nth-child(4) { animation: pipeline-active 12s ease-in-out 6s infinite; }
+.learning-dashboard .learning-step:nth-child(5) { animation: pipeline-active 12s ease-in-out 8s infinite; }
+.learning-dashboard .learning-step:nth-child(6) { animation: pipeline-active 12s ease-in-out 10s infinite; }
+.learning-dashboard .learning-step + .learning-step::before { content: ''; position: absolute; left: 50%; top: -13px; width: 1px; height: 13px; background: linear-gradient(to bottom, rgba(228,123,82,.65), transparent); opacity: .55; }
+.learning-live { animation: live-pulse 2.4s ease-in-out infinite; }
+.landing-page > main > section:first-child > div:first-child > * { animation: hero-enter .6s cubic-bezier(.22,1,.36,1) both; }
+.landing-page > main > section:first-child > div:first-child > :nth-child(1) { animation-delay: .08s; }
+.landing-page > main > section:first-child > div:first-child > :nth-child(2) { animation-delay: .18s; }
+.landing-page > main > section:first-child > div:first-child > :nth-child(3) { animation-delay: .28s; }
+.landing-page > main > section:first-child > div:first-child > :nth-child(4) { animation-delay: .38s; }
+.landing-page > main > section:first-child > div:nth-child(2) { animation: hero-enter .7s cubic-bezier(.22,1,.36,1) .5s both; }
+.landing-page > main > section:not(:first-child) { animation: section-enter .7s cubic-bezier(.22,1,.36,1) both; }
+.landing-page button.bg-gradient-to-r { position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; }
+.landing-page button.bg-gradient-to-r::before { content: ''; position: absolute; inset: 0; width: 35%; transform: translateX(-160%) skewX(-18deg); background: rgba(255,255,255,.16); transition: transform .7s ease; }
+.landing-page button.bg-gradient-to-r:hover { transform: translateY(-2px) scale(1.02); filter: brightness(1.08); }
+.landing-page button.bg-gradient-to-r:hover::before { transform: translateX(390%) skewX(-18deg); }
+.hero-orbit { position: relative; isolation: isolate; animation: dashboard-breathe 8s ease-in-out infinite; }
+.hero-orbit::before { content: ''; position: absolute; inset: 12% 16%; z-index: -1; border-radius: 9999px; background: radial-gradient(circle, rgba(217,93,57,.16), transparent 70%); filter: blur(32px); animation: dashboard-glow 8s ease-in-out infinite; }
+.hero-orbit::after { content: ''; position: absolute; inset: 18px; z-index: -1; pointer-events: none; opacity: .42; background-image: radial-gradient(circle, rgba(226,161,93,.75) 0 1px, transparent 1.5px), radial-gradient(circle, rgba(217,93,57,.6) 0 1px, transparent 1.5px); background-position: 8% 20%, 92% 76%; background-size: 108px 86px, 132px 112px; animation: particle-float 12s ease-in-out infinite alternate; }
+.hero-orbit .learning-step { position: relative; z-index: 1; transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease, filter .35s ease; }
+.hero-orbit .learning-step::after { content: ''; position: absolute; width: 5px; height: 5px; left: 50%; bottom: -16px; border-radius: 50%; background: #E47B52; box-shadow: 0 0 12px 3px rgba(228,123,82,.7); opacity: 0; animation: pipeline-particle 12s linear infinite; }
+.hero-orbit .learning-step:hover { z-index: 2; transform: translateY(-3px) scale(1.02); filter: brightness(1.15); box-shadow: 0 0 24px rgba(217,93,57,.2); }
+.hero-orbit .learning-step:nth-child(1)::after, .hero-orbit .learning-step:nth-child(1) { animation-delay: 0s; }
+.hero-orbit .learning-step:nth-child(2)::after, .hero-orbit .learning-step:nth-child(2) { animation-delay: 2s; }
+.hero-orbit .learning-step:nth-child(3)::after, .hero-orbit .learning-step:nth-child(3) { animation-delay: 4s; }
+.hero-orbit .learning-step:nth-child(4)::after, .hero-orbit .learning-step:nth-child(4) { animation-delay: 6s; }
+.hero-orbit .learning-step:nth-child(5)::after, .hero-orbit .learning-step:nth-child(5) { animation-delay: 8s; }
+.hero-orbit .learning-step:nth-child(6)::after, .hero-orbit .learning-step:nth-child(6) { animation-delay: 10s; }
+.hero-orbit .learning-step:nth-child(1) { animation: pipeline-active 12s ease-in-out infinite; }
+.hero-orbit .learning-step:nth-child(2) { animation: pipeline-active 12s ease-in-out 2s infinite; }
+.hero-orbit .learning-step:nth-child(3) { animation: pipeline-active 12s ease-in-out 4s infinite; }
+.hero-orbit .learning-step:nth-child(4) { animation: pipeline-active 12s ease-in-out 6s infinite; }
+.hero-orbit .learning-step:nth-child(5) { animation: pipeline-active 12s ease-in-out 8s infinite; }
+.hero-orbit .learning-step:nth-child(6) { animation: pipeline-active 12s ease-in-out 10s infinite; }
+.hero-orbit .learning-step + .learning-step::before { content: ''; position: absolute; left: 50%; top: -13px; width: 1px; height: 13px; background: linear-gradient(to bottom, rgba(228,123,82,.65), transparent); opacity: .55; }
+.hero-orbit .learning-step:first-child { animation-name: pipeline-active; }
+.hero-orbit span.text-lime-300 { animation: live-pulse 2.4s ease-in-out infinite; }
+.min-h-\[330px\] { position: relative; isolation: isolate; animation: dashboard-breathe 8s ease-in-out infinite; }
+.min-h-\[330px\]::before { content: ''; position: absolute; inset: 12% 16%; z-index: -1; border-radius: 9999px; background: radial-gradient(circle, rgba(217,93,57,.14), transparent 70%); filter: blur(30px); animation: dashboard-glow 8s ease-in-out infinite; }
+.min-h-\[330px\]::after { content: ''; position: absolute; inset: 16px; z-index: -1; pointer-events: none; opacity: .36; background-image: radial-gradient(circle, rgba(226,161,93,.7) 0 1px, transparent 1.5px), radial-gradient(circle, rgba(217,93,57,.55) 0 1px, transparent 1.5px); background-position: 8% 20%, 92% 76%; background-size: 108px 86px, 132px 112px; animation: particle-float 12s ease-in-out infinite alternate; }
+.min-h-\[330px\] .learning-step { position: relative; z-index: 1; transition: border-color .35s ease, box-shadow .35s ease, transform .35s ease, filter .35s ease; }
+.min-h-\[330px\] .learning-step::after { content: ''; position: absolute; width: 5px; height: 5px; left: 50%; bottom: -16px; border-radius: 50%; background: #E47B52; box-shadow: 0 0 12px 3px rgba(228,123,82,.7); opacity: 0; animation: pipeline-particle 12s linear infinite; }
+.min-h-\[330px\] .learning-step:hover { z-index: 2; transform: translateY(-3px) scale(1.02); filter: brightness(1.15); box-shadow: 0 0 24px rgba(217,93,57,.2); }
+.min-h-\[330px\] .learning-step:nth-child(1) { animation: pipeline-active 12s ease-in-out infinite; }
+.min-h-\[330px\] .learning-step:nth-child(2) { animation: pipeline-active 12s ease-in-out 2s infinite; }
+.min-h-\[330px\] .learning-step:nth-child(3) { animation: pipeline-active 12s ease-in-out 4s infinite; }
+.min-h-\[330px\] .learning-step:nth-child(4) { animation: pipeline-active 12s ease-in-out 6s infinite; }
+.min-h-\[330px\] .learning-step:nth-child(5) { animation: pipeline-active 12s ease-in-out 8s infinite; }
+.min-h-\[330px\] .learning-step:nth-child(6) { animation: pipeline-active 12s ease-in-out 10s infinite; }
+.min-h-\[330px\] span.text-lime-300 { animation: live-pulse 2.4s ease-in-out infinite; }
+.relative > main > section:first-child > div:first-child > * { animation: hero-enter .6s cubic-bezier(.22,1,.36,1) both; }
+.relative > main > section:first-child > div:first-child > :nth-child(1) { animation-delay: .08s; }
+.relative > main > section:first-child > div:first-child > :nth-child(2) { animation-delay: .18s; }
+.relative > main > section:first-child > div:first-child > :nth-child(3) { animation-delay: .28s; }
+.relative > main > section:first-child > div:first-child > :nth-child(4) { animation-delay: .38s; }
+.relative > main > section:first-child > div:nth-child(2) { animation: hero-enter .7s cubic-bezier(.22,1,.36,1) .5s both; }
+.relative > main > section:not(:first-child) { animation: section-enter .7s cubic-bezier(.22,1,.36,1) both; }
+.relative button.bg-gradient-to-r { position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, filter .25s ease; }
+.relative button.bg-gradient-to-r::before { content: ''; position: absolute; inset: 0; width: 35%; transform: translateX(-160%) skewX(-18deg); background: rgba(255,255,255,.16); transition: transform .7s ease; }
+.relative button.bg-gradient-to-r:hover { transform: translateY(-2px) scale(1.02); filter: brightness(1.08); }
+.relative button.bg-gradient-to-r:hover::before { transform: translateX(390%) skewX(-18deg); }
+.learning-loop-node { animation: loop-node-in .55s ease-out both; }
+.learning-loop-node:nth-child(1) { animation-delay: .12s; }
+.learning-loop-node:nth-child(2) { animation-delay: .2s; }
+.learning-loop-node:nth-child(3) { animation-delay: .28s; }
+.learning-loop-node:nth-child(4) { animation-delay: .36s; }
+.learning-loop-node:nth-child(5) { animation-delay: .44s; }
+.learning-loop-node:nth-child(6) { animation-delay: .52s; }
+.no-select { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+@keyframes orbit-pulse { 0%, 100% { transform: scale(1); opacity: .55; } 50% { transform: scale(1.04); opacity: .9; } }
+@keyframes loop-node-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes hero-enter { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes section-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes dashboard-breathe { 0%, 100% { box-shadow: 0 0 34px -14px rgba(217,93,57,.32); } 50% { box-shadow: 0 0 48px -12px rgba(217,93,57,.5); } }
+@keyframes dashboard-glow { 0%, 100% { opacity: .55; transform: scale(.95); } 50% { opacity: .95; transform: scale(1.08); } }
+@keyframes particle-float { from { transform: translate3d(0, 3px, 0); } to { transform: translate3d(5px, -8px, 0); } }
+@keyframes pipeline-active { 0%, 12%, 100% { transform: scale(1); box-shadow: none; } 5%, 9% { transform: scale(1.025); box-shadow: 0 0 22px rgba(217,93,57,.28); } }
+@keyframes pipeline-particle { 0%, 4% { opacity: 0; transform: translate(-50%, -2px); } 8%, 16% { opacity: .9; } 28% { opacity: .12; transform: translate(-50%, 240px); } 100% { opacity: 0; transform: translate(-50%, 240px); } }
+@keyframes live-pulse { 0%, 100% { opacity: .72; text-shadow: 0 0 0 rgba(217,93,57,0); } 50% { opacity: 1; text-shadow: 0 0 12px rgba(217,93,57,.7); } }
+@keyframes ember-drift-one { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); border-radius: 58% 42% 38% 62% / 48% 56% 44% 52%; } 50% { transform: translate3d(-5%, 6%, 0) rotate(10deg) scale(1.08); border-radius: 42% 58% 56% 44% / 62% 42% 58% 38%; } }
+@keyframes ember-drift-two { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); border-radius: 58% 42% 38% 62% / 48% 56% 44% 52%; } 50% { transform: translate3d(7%, -8%, 0) rotate(-12deg) scale(1.1); border-radius: 54% 46% 65% 35% / 38% 60% 40% 62%; } }
+@keyframes ember-drift-three { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(8%, -5%, 0) scale(1.12); } }
+@media (max-width: 767px) { .ambient-cursor-glow { display: none; } .learning-dashboard::after, .hero-orbit::after, .min-h-\[330px\]::after { opacity: .2; } .learning-dashboard .learning-step + .learning-step::before, .hero-orbit .learning-step + .learning-step::before, .min-h-\[330px\] .learning-step + .learning-step::before { display: none; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } .ambient-cursor-glow, .learning-dashboard::after, .hero-orbit::after, .min-h-\[330px\]::after { display: none; } }
